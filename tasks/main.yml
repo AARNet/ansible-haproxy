@@ -144,6 +144,22 @@
   template: src=defaults.cfg dest={{ etc_prefix }}/haproxy/compiled/02-defaults.cfg
   when: haproxy_defaults is defined
 
+## ASSEMBLE CONFIG - SSL CERTS
+
+- name: 'Create directory for SSL certs'
+ file: path={{ etc_prefix }}/haproxy/ssl state=directory
+
+- name: 'Copy SSL certs to directory'
+ copy: src=etc/haproxy/ssl/ dest={{ etc_prefix }}/haproxy/ssl/ mode=0600 owner=haproxy group=haproxy 
+
+## ASSEMBLE CONFIG - HTML Error pages
+
+- name: 'Create directory for HTML error pages'
+ file: path={{ etc_prefix }}/haproxy/html state=directory
+
+- name: 'Copy HTML error pages to directory'
+ copy: src=etc/haproxy/html/ dest={{ etc_prefix }}/haproxy/html/ mode=0644 owner=root group=root
+
 ## ASSEMBLE FINAL CONFIG
 
 - name: 'Assemble the backends configuration file'
