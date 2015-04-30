@@ -1,4 +1,4 @@
-Role Name
+ansible-haproxy, local tweaks
 ========
 
 Will install haproxy and configure it.
